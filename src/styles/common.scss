@@ -9,10 +9,13 @@ body {
 
 body {
   min-height: 100vh;
-  background-image: url(../assets/images/abstract.jpg);
-  background-size: cover;
-  background-position: center;
-  backdrop-filter: brightness(0.5) blur(80px) hue-rotate(-8deg);
+  background-image: linear-gradient(rgb(10, 10, 17) 20%, rgb(20, 52, 63) 60%);
+  @supports (backdrop-filter: none) {
+    background-image: url(../assets/images/abstract.jpg);
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: brightness(0.5) blur(80px) hue-rotate(-8deg);
+  }
   color: #fff;
   display: flex;
   flex-direction: column;
