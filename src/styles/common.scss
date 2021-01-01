@@ -1,0 +1,91 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+body {
+  min-height: 100vh;
+  background-image: url(../assets/images/abstract.jpg);
+  background-size: cover;
+  background-position: center;
+  backdrop-filter: brightness(0.5) blur(80px) hue-rotate(-8deg);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 8vw);
+  max-width: 1000px;
+  padding: 0 4vw;
+}
+
+section {
+  width: 100%;
+}
+
+footer {
+  font-family: 'Rubik', sans-serif;
+  display: flex;
+  width: calc(100% - 8vw);
+  max-width: 1000px;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+  padding: 16px 4vw;
+  margin-top: 10vh;
+
+  p {
+    margin: 4px 0;
+    width: fit-content;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+
+  p:hover {
+    opacity: 0.9;
+  }
+
+  a {
+    cursor: pointer;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Rubik', sans-serif;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(1rem, 3vw, 2.5rem);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 6vw, 5rem);
+}
+
+h3 {
+  font-size: clamp(1.3rem, 4vw, 1.5rem);
+}
+
+p {
+  margin: 0;
+  line-height: 130%;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}

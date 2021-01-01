@@ -1,0 +1,17 @@
+{
+  "name": "electro-control-sueess",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/html/*.html",
+    "build": "parcel build src/html/*.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.32.0"
+  }
+}
