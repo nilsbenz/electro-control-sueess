@@ -1,3 +1,4 @@
+$spacing-x-small: 8px;
 $spacing-small: 16px;
 $spacing-normal: 24px;
 $spacing-large: 32px;
@@ -122,7 +123,7 @@ a {
 @media screen and (min-width: 600px) {
   main,
   footer {
-    width: calc(100% - 48px);
+    width: calc(100% - 2 * #{$spacing-normal});
     padding: 0 $spacing-normal;
   }
 

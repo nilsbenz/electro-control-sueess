@@ -26,7 +26,7 @@ section.landing {
   margin-top: 25vh;
 
   h1 {
-    margin: 8px 0;
+    margin: $spacing-x-small 0;
   }
 
   h2 {
@@ -44,8 +44,7 @@ section.landing {
       border-radius: 1px;
     }
 
-    .square1,
-    .square2 {
+    .square {
       width: 48px;
       height: 48px;
       background-color: #fff100;
@@ -72,8 +71,7 @@ section.landing {
       margin-top: 3vw;
       margin-bottom: 9vw;
 
-      .square1,
-      .square2 {
+      .square {
         width: 6vw;
         height: 6vw;
         margin-top: -2vw;
@@ -95,8 +93,7 @@ section.landing {
       margin-top: 48px;
       margin-bottom: 144px;
 
-      .square1,
-      .square2 {
+      .square {
         width: 96px;
         height: 96px;
         margin-top: -32px;
@@ -120,12 +117,26 @@ section.calculator {
   .card {
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-auto-flow: column;
-    grid-gap: $spacing-normal;
+    grid-auto-rows: auto;
+    grid-gap: $spacing-small;
     align-items: center;
 
-    h3 {
-      margin-bottom: 8px;
+    p {
+      grid-column: span 2;
+    }
+  }
+
+  @media screen and (min-width: 600px) {
+    .card {
+      grid-gap: $spacing-x-small $spacing-normal;
+
+      img.icon {
+        grid-row: span 2;
+      }
+
+      p {
+        grid-column: span 1;
+      }
     }
   }
 }
@@ -150,7 +161,7 @@ section.was-wir-bieten {
       grid-template-columns: auto 1fr;
       grid-auto-rows: auto;
       align-items: center;
-      grid-gap: $spacing-normal;
+      grid-gap: $spacing-small;
 
       p {
         grid-column: span 2;
@@ -165,12 +176,6 @@ section.was-wir-bieten {
     .arbeitssicherheit,
     .kontrollen {
       align-self: start;
-    }
-  }
-
-  @media screen and (min-width: 400px) {
-    img {
-      height: 10vw;
     }
   }
 
@@ -196,12 +201,12 @@ section.was-wir-bieten {
   }
 
   @media screen and (min-width: 600px) {
-    img {
-      height: 60px;
-    }
-
     .grid {
       grid-gap: $spacing-normal;
+
+      .card {
+        grid-gap: $spacing-normal;
+      }
     }
   }
 
@@ -223,5 +228,17 @@ section.was-wir-bieten {
         }
       }
     }
+  }
+}
+
+@media screen and (min-width: 400px) {
+  img.icon {
+    height: 10vw;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  img.icon {
+    height: 60px;
   }
 }
