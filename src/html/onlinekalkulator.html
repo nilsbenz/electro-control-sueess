@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Electro-Control Süess GmbH | Onlinekalkulator</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&family=Rubik&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/onlinekalkulator.scss" />
+  </head>
+  <body>
+    <header>
+      <a href="/">
+        <h1>electro control süess gmbh</h1>
+      </a>
+      <h2>onlinekalkulator</h2>
+    </header>
+    <main>
+      <p>
+        Berechnen Sie direkt und unkompliziert die Kosten für eine unabhängige
+        Elektrokontrolle.
+      </p>
+      <form id="onlinekalkulator">
+        <div class="formfield">
+          <input id="input-one" type="text" placeholder=" " />
+          <label for="input-one">Dienstleistung</label>
+        </div>
+        <div class="formfield">
+          <select name="cars" id="cars" required>
+            <option value="" disabled selected></option>
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="opel">Opel</option>
+            <option value="audi">Audi</option>
+          </select>
+          <label for="cars">Dienstleistung</label>
+        </div>
+      </form>
+    </main>
+    <footer>
+      <p>© 2021 electro-control sueess gmbh</p>
+      <p>
+        <a href="#">impressum</a>
+      </p>
+    </footer>
+  </body>
+</html>

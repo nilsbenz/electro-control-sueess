@@ -1,0 +1,75 @@
+@import './common.scss';
+
+.formfield {
+  position: relative;
+
+  input,
+  select {
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 1rem;
+    padding: calc(#{2 * $spacing-x-small} + 0.8rem) $spacing-small
+      $spacing-x-small;
+    background-color: $color-card-bg;
+    color: $color-text-primary;
+    border: 1px solid transparent;
+    border-radius: $border-radius;
+
+    + label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 0.8rem;
+      line-height: 1rem;
+      color: $color-text-secondary;
+      cursor: text;
+      margin: $spacing-x-small 0 0 $spacing-small;
+      transition: font-size $animation-speed-fast,
+        line-height $animation-speed-fast;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  input {
+    &:not(:focus):placeholder-shown + label {
+      font-size: 1rem;
+      line-height: 2.8rem;
+    }
+  }
+
+  select {
+    cursor: pointer;
+    appearance: none;
+
+    + label {
+      pointer-events: none;
+    }
+
+    &:invalid + label {
+      font-size: 1rem;
+      line-height: 2.8rem;
+    }
+  }
+
+  &--error {
+    input,
+    select {
+      border: 1px solid $color-error;
+    }
+  }
+}
+
+// Faster transition in Safari due to fractional font-size issue
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    .formfield > input,
+    .formfield > input + label,
+    .formfield > select,
+    .formfield > select + label {
+      transition-duration: 0.1s;
+    }
+  }
+}
