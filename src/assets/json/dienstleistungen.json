@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Blitzschutz (Kontrolle, Beratung und Konzepte)",
+    "bereiche": [
+      {
+        "name": "Blitzschutzkontrolle",
+        "preisliste": [
+          {
+            "titel": "Stundensätze",
+            "preise": [
+              {
+                "name": "Inspektor für akkreditierte Bereiche",
+                "preis": "CHF 138.00"
+              },
+              {
+                "name": "Inspektor für unabhängige Bereiche und Blitzschutz",
+                "preis": "CHF 123.00"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Akkreditierte Kontrolle",
+    "bereiche": [
+      {
+        "name": "Militäranlagen",
+        "preisliste": [
+          {
+            "titel": "Stundensätze",
+            "preise": [
+              {
+                "name": "Inspektor für akkreditierte Bereiche",
+                "preis": "CHF 138.00"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Bahnen",
+        "preisliste": [
+          {
+            "titel": "Stundensätze",
+            "preise": [
+              {
+                "name": "Inspektor für unabhängige Bereiche und Blitzschutz",
+                "preis": "CHF 123.00"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Überprüfung Netzqualität",
+    "bereiche": []
+  }
+]

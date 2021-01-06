@@ -30,11 +30,23 @@
 
     &:focus {
       outline: none;
+      box-shadow: 0 0 0 2px $color-error;
     }
   }
 
   input {
     &:not(:focus):placeholder-shown + label {
+      font-size: 1rem;
+      line-height: 2.8rem;
+    }
+  }
+
+  input[type='date'] {
+    &:not(:focus):invalid {
+      color: transparent;
+    }
+
+    &:not(:focus):invalid + label {
       font-size: 1rem;
       line-height: 2.8rem;
     }
@@ -70,6 +82,81 @@
     .formfield > select,
     .formfield > select + label {
       transition-duration: 0.1s;
+    }
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
+  grid-auto-flow: row;
+  grid-gap: $spacing-x-small;
+
+  p {
+    margin: $spacing-small 0;
+  }
+
+  .preisliste {
+    display: flex;
+    flex-direction: column;
+    margin: $spacing-normal 0;
+    max-width: 600px;
+
+    h4 {
+      font-size: 1.4rem;
+      margin-bottom: $spacing-small;
+    }
+
+    h5 {
+      font-size: 1.2rem;
+      margin-bottom: $spacing-x-small;
+    }
+
+    .preisliste-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-auto-rows: auto;
+      grid-auto-flow: column;
+      grid-gap: $spacing-small;
+      align-items: end;
+      margin-bottom: $spacing-x-small;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    &--hidden {
+      display: none;
+    }
+  }
+
+  button[type='submit'] {
+    justify-self: end;
+  }
+
+  @media screen and (min-width: 600px) {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: $spacing-small;
+
+    p {
+      grid-column: span 2;
+    }
+
+    .preisliste {
+      grid-column: span 2;
+    }
+
+    button[type='submit'] {
+      grid-column: span 2;
     }
   }
 }
