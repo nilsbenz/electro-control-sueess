@@ -1,6 +1,5 @@
 import * as functions from 'firebase-functions';
 
-import { EventContext } from 'firebase-functions';
 import { DocumentSnapshot } from 'firebase-functions/lib/providers/firestore';
 
 import * as Mail from 'nodemailer/lib/mailer';
@@ -25,7 +24,7 @@ interface Message {
 
 async function onCreateSendEmail(
   snap: DocumentSnapshot,
-  _context: EventContext
+  _context: functions.EventContext
 ) {
   const message: Message = snap.data() as Message;
 
@@ -55,7 +54,7 @@ async function onCreateSendEmail(
 
     const mailOptions = {
       from: mailFrom,
-      to: message.mail, // TODO: ändern!
+      to: message.mail || mailTo, // TODO: ändern!
       subject: `Kontaktanfrage von ${message.firstname} ${message.lastname}`,
       html,
     };
