@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Electro-Control Süess GmbH | Onlinekalkulator</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&family=Rubik&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/onlinekalkulator.scss" />
+  </head>
+  <body>
+    <header>
+      <a href="/">
+        <h1>electro control süess gmbh</h1>
+      </a>
+      <h2>onlinekalkulator</h2>
+      <a href="/">
+        <button class="back">
+          <img
+          src="../assets/icons/chevron-left.svg"
+          alt="calculator icon"
+          class="icon icon--left"
+          />
+          zur Startseite
+        </button>
+      </a>
+    </header>
+    <main>
+      <p>
+        Berechnen Sie direkt und unkompliziert die Kosten für eine unabhängige
+        Elektrokontrolle.
+      </p>
+      <form id="onlinekalkulator">
+      <p>
+        Wählen Sie dazu eine Dienstleistung und falls vorhanden einen
+        entsprechenden Bereich, um einen unverbindlichen Kostenvorschlag zu
+        erhalten.
+      </p>
+        <div class="formfield">
+          <select name="dienstleistungen" id="dienstleistungen" required>
+            <option value="" disabled selected></option>
+          </select>
+          <label for="dienstleistungen">Dienstleistung</label>
+        </div>
+        <div class="formfield" hidden>
+          <select name="bereiche" id="bereiche" required>
+            <option value="" disabled selected></option>
+          </select>
+          <label for="bereiche">Bereich</label>
+        </div>
+        <div class="preisliste preisliste--hidden" id="preisliste">
+        </div>
+        <p>
+          Machen Sie folgende Angaben zu Ihrer Person, damit wir Sie
+          kontaktieren können.
+        </p>
+        <div class="formfield">
+          <input id="company" type="text" placeholder=" " required />
+          <label for="company">Firma</label>
+        </div>
+        <div class="formfield">
+          <select name="anrede" id="anrede" required>
+            <option value="" disabled selected></option>
+            <option value="Frau">Frau</option>
+            <option value="Herr">Herr</option>
+          </select>
+          <label for="anrede">Anrede</label>
+        </div>
+        <div class="formfield">
+          <input id="firstname" type="text" placeholder=" " required />
+          <label for="firstname">Vorname</label>
+        </div>
+        <div class="formfield">
+          <input id="lastname" type="text" placeholder=" " required />
+          <label for="lastname">Nachname</label>
+        </div>
+        <div class="formfield">
+          <input id="address" type="text" placeholder=" " required />
+          <label for="address">Adresse</label>
+        </div>
+        </div>
+        <div class="formfield">
+          <input id="place" type="text" placeholder=" " required />
+          <label for="place">PLZ / Ort</label>
+        </div>
+        </div>
+        <div class="formfield">
+          <input id="phone" type="text" placeholder=" " required />
+          <label for="phone">Telefonnummer</label>
+        </div>
+        </div>
+        <div class="formfield">
+          <input id="email" type="email" placeholder=" " required />
+          <label for="email">Mailadresse</label>
+        </div>
+        <button type="submit">
+          Senden
+          <img
+            src="../assets/icons/paper-plane.svg"
+            alt="calculator icon"
+            class="icon icon--right"
+          />
+        </button>
+      </form>
+    </main>
+    <footer>
+      <p>© 2021 electro-control sueess gmbh</p>
+      <p>
+        <a href="#">impressum</a>
+      </p>
+    </footer>
+    <script src="../ts/onlinekalkulator.ts"></script>
+  </body>
+</html>

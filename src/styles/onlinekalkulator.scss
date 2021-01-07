@@ -1,0 +1,162 @@
+@import './common.scss';
+
+.formfield {
+  position: relative;
+
+  input,
+  select {
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 1rem;
+    padding: calc(#{2 * $spacing-x-small} + 0.8rem) $spacing-small
+      $spacing-x-small;
+    background-color: $color-card-bg;
+    color: $color-text-primary;
+    border: 1px solid transparent;
+    border-radius: $border-radius;
+
+    + label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 0.8rem;
+      line-height: 1rem;
+      color: $color-text-secondary;
+      cursor: text;
+      margin: $spacing-x-small 0 0 $spacing-small;
+      transition: font-size $animation-speed-fast,
+        line-height $animation-speed-fast;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px $color-error;
+    }
+  }
+
+  input {
+    &:not(:focus):placeholder-shown + label {
+      font-size: 1rem;
+      line-height: 2.8rem;
+    }
+  }
+
+  input[type='date'] {
+    &:not(:focus):invalid {
+      color: transparent;
+    }
+
+    &:not(:focus):invalid + label {
+      font-size: 1rem;
+      line-height: 2.8rem;
+    }
+  }
+
+  select {
+    cursor: pointer;
+    appearance: none;
+
+    + label {
+      pointer-events: none;
+    }
+
+    &:invalid + label {
+      font-size: 1rem;
+      line-height: 2.8rem;
+    }
+  }
+
+  &--error {
+    input,
+    select {
+      border: 1px solid $color-error;
+    }
+  }
+}
+
+// Faster transition in Safari due to fractional font-size issue
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    .formfield > input,
+    .formfield > input + label,
+    .formfield > select,
+    .formfield > select + label {
+      transition-duration: 0.1s;
+    }
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
+  grid-auto-flow: row;
+  grid-gap: $spacing-x-small;
+
+  p {
+    margin: $spacing-small 0;
+  }
+
+  .preisliste {
+    display: flex;
+    flex-direction: column;
+    margin: $spacing-normal 0;
+    max-width: 600px;
+
+    h4 {
+      font-size: 1.4rem;
+      margin-bottom: $spacing-small;
+    }
+
+    h5 {
+      font-size: 1.2rem;
+      margin-bottom: $spacing-x-small;
+    }
+
+    .preisliste-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-auto-rows: auto;
+      grid-auto-flow: column;
+      grid-gap: $spacing-small;
+      align-items: end;
+      margin-bottom: $spacing-x-small;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    &--hidden {
+      display: none;
+    }
+  }
+
+  button[type='submit'] {
+    justify-self: end;
+  }
+
+  @media screen and (min-width: 600px) {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: $spacing-small;
+
+    p {
+      grid-column: span 2;
+    }
+
+    .preisliste {
+      grid-column: span 2;
+    }
+
+    button[type='submit'] {
+      grid-column: span 2;
+    }
+  }
+}

@@ -3,9 +3,9 @@
 .card {
   padding: $spacing-normal;
   border-radius: $border-radius;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: $color-card-bg;
   cursor: pointer;
-  transition: box-shadow 0.4s;
+  transition: box-shadow $animation-speed-slow;
 }
 
 img.icon {
@@ -16,7 +16,7 @@ img.icon {
 }
 
 .card:hover {
-  box-shadow: 0 15px 24px rgba(0, 0, 0, 0.23), 0 19px 76px rgba(0, 0, 0, 0.3);
+  box-shadow: $shadow-big;
   img.icon {
     opacity: 0.9;
   }
@@ -40,7 +40,7 @@ section.landing {
     .line {
       height: 2px;
       width: 100%;
-      background-color: #fff;
+      background-color: $color-text-primary;
       border-radius: 1px;
     }
 
