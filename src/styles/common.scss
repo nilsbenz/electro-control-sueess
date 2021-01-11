@@ -165,6 +165,16 @@ button {
   &:hover {
     box-shadow: $shadow-big;
   }
+
+  &:disabled {
+    box-shadow: none;
+    cursor: wait;
+    color: $color-text-secondary;
+
+    img.icon {
+      opacity: 0.6;
+    }
+  }
 }
 
 @media screen and (min-width: 533px) {

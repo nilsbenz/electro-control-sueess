@@ -25,6 +25,9 @@ const emailFormField = document.getElementById('email') as HTMLInputElement;
 const preisliste = document.getElementById('preisliste') as HTMLDivElement;
 const sendMailSuccess = document.getElementById('send-mail-success');
 const sendMailError = document.getElementById('send-mail-error');
+const formSubmitButton = document.getElementById(
+  'form-submit-button'
+) as HTMLButtonElement;
 
 dienstleistungen.forEach((dienstleistung) => {
   const option = document.createElement('option');
@@ -97,6 +100,7 @@ form.addEventListener(
     e.preventDefault();
     sendMailSuccess.classList.add('success-message--hidden');
     sendMailError.classList.add('error-message--hidden');
+    formSubmitButton.disabled = true;
     const service = dienstleistungenFormfield.value;
     const area = bereicheFormfield.value || undefined;
     const company = firmaFormField.value || undefined;
@@ -128,6 +132,8 @@ form.addEventListener(
         'content-type': 'application/json',
       },
     });
+
+    formSubmitButton.disabled = false;
 
     const responseBody = await res.json();
 
