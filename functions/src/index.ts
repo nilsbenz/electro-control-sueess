@@ -1,13 +1,7 @@
 import * as functions from 'firebase-functions';
 
-import { DocumentSnapshot } from 'firebase-functions/lib/providers/firestore';
-
 import * as Mail from 'nodemailer/lib/mailer';
 import * as nodemailer from 'nodemailer';
-
-export const sendMail = functions.firestore
-  .document('messages/{messageId}')
-  .onCreate(onCreateSendEmail);
 
 interface Message {
   service: string;
@@ -22,23 +16,24 @@ interface Message {
   mail: string;
 }
 
-async function onCreateSendEmail(
-  snap: DocumentSnapshot,
-  _context: functions.EventContext
-) {
-  const message: Message = snap.data() as Message;
+export const sendMail = functions.https.onRequest(async (request, response) => {
+  const message = request.body as Message;
+  const res = await sendEmail(message);
+  response.send(res);
+});
 
+const sendEmail = async (message: Message): Promise<any> => {
   try {
-    const mailFrom: string = functions.config().info.mail.from;
-    const mailPwd: string = functions.config().info.mail.pwd;
-    const mailTo: string = functions.config().info.mail.to;
-    const mailHost: string = functions.config().info.mail.host;
+    const mailFrom: string = functions.config().mail.from;
+    const mailPwd: string = functions.config().mail.pwd;
+    const mailTo: string = functions.config().mail.to;
+    const mailHost: string = functions.config().mail.host;
 
     const html = htmlTemplate
       .replace(
         '[--SERVICE--]',
         message.area
-          ? `${message.service}</p><p>${message.area}`
+          ? `${message.service}</p><p>Bereich:</p><p>${message.area}`
           : message.service
       )
       .replace(
@@ -50,7 +45,7 @@ async function onCreateSendEmail(
       .replace('[--ADDRESS--]', message.address)
       .replace('[--DOMICILE--]', message.domicile)
       .replace('[--PHONE--]', message.phone)
-      .replace('[--MAIL--]', message.mail);
+      .replace(/\[--MAIL--\]/g, message.mail);
 
     const mailOptions = {
       from: mailFrom,
@@ -61,7 +56,7 @@ async function onCreateSendEmail(
 
     const transporter: Mail = nodemailer.createTransport({
       host: mailHost,
-      port: 2525,
+      port: 587,
       secure: false,
       auth: {
         type: 'LOGIN',
@@ -71,10 +66,11 @@ async function onCreateSendEmail(
     });
 
     await transporter.sendMail(mailOptions);
-  } catch (err) {
-    console.error(err);
+    return { success: true };
+  } catch (error) {
+    return { success: false, error };
   }
-}
+};
 
 const htmlTemplate = `<link
 href="https://fonts.googleapis.com/css2?family=Roboto&family=Rubik&display=swap"
