@@ -161,7 +161,7 @@ form {
 
       a {
         color: $color-text-secondary;
-        transition: color 0.2s;
+        transition: color $animation-speed-fast;
       }
 
       a:hover {
