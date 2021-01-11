@@ -17,3 +17,16 @@ export interface Dienstleistung {
   name: string;
   bereiche: Bereich[];
 }
+
+export interface Message {
+  service: string;
+  area: string | undefined;
+  company: string | undefined;
+  form: string;
+  firstname: string;
+  lastname: string;
+  address: string;
+  domicile: string;
+  phone: string;
+  mail: string;
+}

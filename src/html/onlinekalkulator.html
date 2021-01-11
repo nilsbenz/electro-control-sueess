@@ -20,9 +20,9 @@
       <a href="/">
         <button class="back">
           <img
-          src="../assets/icons/chevron-left.svg"
-          alt="calculator icon"
-          class="icon icon--left"
+            src="../assets/icons/chevron-left.svg"
+            alt="calculator icon"
+            class="icon icon--left"
           />
           zur Startseite
         </button>
@@ -34,31 +34,30 @@
         Elektrokontrolle.
       </p>
       <form id="onlinekalkulator">
-      <p>
-        Wählen Sie dazu eine Dienstleistung und falls vorhanden einen
-        entsprechenden Bereich, um einen unverbindlichen Kostenvorschlag zu
-        erhalten.
-      </p>
+        <p>
+          Wählen Sie dazu eine Dienstleistung und falls vorhanden einen
+          entsprechenden Bereich, um einen unverbindlichen Kostenvorschlag zu
+          erhalten.
+        </p>
         <div class="formfield">
           <select name="dienstleistungen" id="dienstleistungen" required>
             <option value="" disabled selected></option>
           </select>
-          <label for="dienstleistungen">Dienstleistung</label>
+          <label for="dienstleistungen">Dienstleistung *</label>
         </div>
-        <div class="formfield" hidden>
+        <div class="formfield formfield--hidden">
           <select name="bereiche" id="bereiche" required>
             <option value="" disabled selected></option>
           </select>
-          <label for="bereiche">Bereich</label>
+          <label for="bereiche">Bereich *</label>
         </div>
-        <div class="preisliste preisliste--hidden" id="preisliste">
-        </div>
+        <div class="preisliste preisliste--hidden" id="preisliste"></div>
         <p>
-          Machen Sie folgende Angaben zu Ihrer Person, damit wir Sie
-          kontaktieren können.
+          Nachfolgend können Sie Angaben zu Ihrer Person machen, wenn Sie gleich
+          mit uns in Kontakt treten wollen.
         </p>
         <div class="formfield">
-          <input id="company" type="text" placeholder=" " required />
+          <input id="company" type="text" placeholder=" " />
           <label for="company">Firma</label>
         </div>
         <div class="formfield">
@@ -67,43 +66,55 @@
             <option value="Frau">Frau</option>
             <option value="Herr">Herr</option>
           </select>
-          <label for="anrede">Anrede</label>
+          <label for="anrede">Anrede *</label>
         </div>
         <div class="formfield">
           <input id="firstname" type="text" placeholder=" " required />
-          <label for="firstname">Vorname</label>
+          <label for="firstname">Vorname *</label>
         </div>
         <div class="formfield">
           <input id="lastname" type="text" placeholder=" " required />
-          <label for="lastname">Nachname</label>
+          <label for="lastname">Nachname *</label>
         </div>
         <div class="formfield">
           <input id="address" type="text" placeholder=" " required />
-          <label for="address">Adresse</label>
-        </div>
+          <label for="address">Adresse *</label>
         </div>
         <div class="formfield">
           <input id="place" type="text" placeholder=" " required />
-          <label for="place">PLZ / Ort</label>
-        </div>
+          <label for="place">PLZ / Ort *</label>
         </div>
         <div class="formfield">
           <input id="phone" type="text" placeholder=" " required />
-          <label for="phone">Telefonnummer</label>
-        </div>
+          <label for="phone">Telefonnummer *</label>
         </div>
         <div class="formfield">
           <input id="email" type="email" placeholder=" " required />
-          <label for="email">Mailadresse</label>
+          <label for="email">Mailadresse *</label>
         </div>
-        <button type="submit">
-          Senden
-          <img
-            src="../assets/icons/paper-plane.svg"
-            alt="calculator icon"
-            class="icon icon--right"
-          />
-        </button>
+        <div class="form-actions">
+          <button type="submit">
+            Senden
+            <img
+              src="../assets/icons/paper-plane.svg"
+              alt="calculator icon"
+              class="icon icon--right"
+            />
+          </button>
+          <p class="error-message error-message--hidden" id="send-mail-error">
+            Leider ist uns beim Übermitteln der Daten ein Fehler unterlaufen.
+            Bitte probieren Sie es erneut oder kontaktieren Sie uns via
+            <a href="mailto:rsueess@electro-control.ch">
+              rsueess@electro-control.ch</a
+            >.
+          </p>
+          <p
+            class="success-message success-message--hidden"
+            id="send-mail-success"
+          >
+            Deine Daten wurden erfolgreich übermittelt!
+          </p>
+        </div>
       </form>
     </main>
     <footer>

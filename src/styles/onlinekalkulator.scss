@@ -72,6 +72,10 @@
       border: 1px solid $color-error;
     }
   }
+
+  &--hidden {
+    display: none;
+  }
 }
 
 // Faster transition in Safari due to fractional font-size issue
@@ -139,8 +143,37 @@ form {
     }
   }
 
-  button[type='submit'] {
-    justify-self: end;
+  .form-actions {
+    display: flex;
+    flex-direction: column;
+
+    p.success-message,
+    p.error-message {
+      margin: $spacing-small 0 0;
+
+      &--hidden {
+        display: none;
+      }
+    }
+
+    p.error-message {
+      color: $color-error;
+
+      a {
+        color: $color-text-secondary;
+        transition: color 0.2s;
+      }
+
+      a:hover {
+        color: $color-text-primary;
+      }
+    }
+
+    button[type='submit'] {
+      align-self: flex-end;
+      height: fit-content;
+      width: fit-content;
+    }
   }
 
   @media screen and (min-width: 600px) {
@@ -155,8 +188,19 @@ form {
       grid-column: span 2;
     }
 
-    button[type='submit'] {
+    .form-actions {
       grid-column: span 2;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+
+      p.success-message,
+      p.error-message {
+        margin: 0 $spacing-small 0 0;
+      }
+
+      button[type='submit'] {
+        align-self: flex-start;
+      }
     }
   }
 }
