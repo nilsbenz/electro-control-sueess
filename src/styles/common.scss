@@ -24,18 +24,13 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   text-size-adjust: 100%;
+  background-color: $bg-color-dark;
+  color: $color-text-primary;
 }
 
 body {
   min-height: 100vh;
   background-image: linear-gradient($bg-color-dark 20%, $bg-color-light 60%);
-  @supports (backdrop-filter: none) {
-    background-image: url(../assets/images/abstract.jpg);
-    background-size: cover;
-    background-position: center;
-    backdrop-filter: brightness(0.5) blur(80px) hue-rotate(-8deg);
-  }
-  color: $color-text-primary;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
