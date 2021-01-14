@@ -18,12 +18,9 @@ $shadow-big: 0 15px 24px rgba(0, 0, 0, 0.23), 0 19px 76px rgba(0, 0, 0, 0.3);
 
 html,
 body {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
-  text-size-adjust: 100%;
   background-color: $bg-color-dark;
   color: $color-text-primary;
 }
@@ -118,15 +115,9 @@ a {
   text-decoration: inherit;
 }
 
-button {
-  padding: #{1.5 * $spacing-x-small} $spacing-normal;
-  background-color: $color-card-bg;
-  color: $color-text-primary;
-  border: 1px solid transparent;
-  border-radius: $border-radius;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: box-shadow $animation-speed-slow;
+button,
+label,
+a.with-icon {
   display: flex;
   align-items: center;
 
@@ -151,6 +142,17 @@ button {
       opacity: 0.9;
     }
   }
+}
+
+button {
+  padding: #{1.5 * $spacing-x-small} $spacing-normal;
+  background-color: $color-card-bg;
+  color: $color-text-primary;
+  border: 1px solid transparent;
+  border-radius: $border-radius;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: box-shadow $animation-speed-slow;
 
   &:focus {
     outline: none;

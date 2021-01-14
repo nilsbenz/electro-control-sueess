@@ -18,6 +18,11 @@ export interface Dienstleistung {
   bereiche: Bereich[];
 }
 
+export interface FileDto {
+  name: string;
+  data: string;
+}
+
 export interface Message {
   service: string;
   area: string | undefined;
@@ -29,4 +34,5 @@ export interface Message {
   domicile: string;
   phone: string;
   mail: string;
+  file: FileDto | undefined;
 }

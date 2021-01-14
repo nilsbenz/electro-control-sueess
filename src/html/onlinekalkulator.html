@@ -9,19 +9,20 @@
       href="https://fonts.googleapis.com/css2?family=Roboto&family=Rubik&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="../styles/normalize.css" />
     <link rel="stylesheet" href="../styles/onlinekalkulator.scss" />
   </head>
   <body>
     <header>
-      <a href="/">
+      <a href="/" tabindex="-1">
         <h1>electro control süess gmbh</h1>
       </a>
       <h2>onlinekalkulator</h2>
-      <a href="/">
+      <a href="/" tabindex="-1">
         <button class="back">
           <img
             src="../assets/icons/chevron-left.svg"
-            alt="calculator icon"
+            alt="back icon"
             class="icon icon--left"
           />
           zur Startseite
@@ -92,15 +93,38 @@
           <input id="email" type="email" placeholder=" " required />
           <label for="email">Mailadresse *</label>
         </div>
-        <div class="form-actions">
-          <button type="submit" id="form-submit-button">
-            Senden
+        <p>
+          Du kannst ausserdem, falls vorhanden, das Formular
+          'Kontrollaufforderung' hochladen.
+        </p>
+        <div class="formfield">
+          <input type="file" id="file-upload" accept=".pdf" />
+          <label for="file-upload" class="drag-area" id="file-upload-drop-area">
             <img
-              src="../assets/icons/paper-plane.svg"
-              alt="calculator icon"
-              class="icon icon--right"
+              src="../assets/icons/upload.svg"
+              alt="upload icon"
+              class="icon icon--left"
             />
-          </button>
+            <span id="file-upload-label" class="file-upload-label">
+              Datei hochladen
+            </span>
+          </label>
+          <img
+            src="../assets/icons/times.svg"
+            alt="delete icon"
+            class="icon icon--delete icon--hidden"
+            id="file-upload-delete"
+          />
+        </div>
+        <button type="submit" id="form-submit-button">
+          Senden
+          <img
+            src="../assets/icons/paper-plane.svg"
+            alt="send icon"
+            class="icon icon--right"
+          />
+        </button>
+        <div class="feedback">
           <p class="error-message error-message--hidden" id="send-mail-error">
             Leider ist uns beim Übermitteln der Daten ein Fehler unterlaufen.
             Bitte probieren Sie es erneut oder kontaktieren Sie uns via

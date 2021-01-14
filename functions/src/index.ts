@@ -3,6 +3,11 @@ import * as functions from 'firebase-functions';
 import * as Mail from 'nodemailer/lib/mailer';
 import * as nodemailer from 'nodemailer';
 
+interface FileDto {
+  name: string;
+  data: string;
+}
+
 interface Message {
   service: string;
   area: string | undefined;
@@ -14,6 +19,7 @@ interface Message {
   domicile: string;
   phone: string;
   mail: string;
+  file: FileDto | undefined;
 }
 
 export const sendMail = functions.https.onRequest(async (request, response) => {
@@ -33,7 +39,7 @@ const sendEmail = async (message: Message): Promise<any> => {
       .replace(
         '[--SERVICE--]',
         message.area
-          ? `${message.service}</p><p>Bereich:</p><p>${message.area}`
+          ? `${message.service}</p><h3>bereich</h3><p>${message.area}`
           : message.service
       )
       .replace(
@@ -44,15 +50,28 @@ const sendEmail = async (message: Message): Promise<any> => {
       )
       .replace('[--ADDRESS--]', message.address)
       .replace('[--DOMICILE--]', message.domicile)
-      .replace('[--PHONE--]', message.phone)
+      .replace(/\[--PHONE--\]/g, message.phone)
       .replace(/\[--MAIL--\]/g, message.mail);
 
-    const mailOptions = {
+    const attachments: Mail.Attachment[] = message.file
+      ? [
+          {
+            filename: message.file.name,
+            path: message.file.data,
+          },
+        ]
+      : [];
+
+    let mailOptions: Mail.Options = {
       from: mailFrom,
       to: message.mail || mailTo, // TODO: ändern!
       subject: `Kontaktanfrage von ${message.firstname} ${message.lastname}`,
       html,
     };
+
+    if (attachments.length) {
+      mailOptions = { ...mailOptions, attachments };
+    }
 
     const transporter: Mail = nodemailer.createTransport({
       host: mailHost,
@@ -72,7 +91,9 @@ const sendEmail = async (message: Message): Promise<any> => {
   }
 };
 
-const htmlTemplate = `<link
+const htmlTemplate = `
+<head>
+<link
 href="https://fonts.googleapis.com/css2?family=Roboto&family=Rubik&display=swap"
 rel="stylesheet"
 />
@@ -85,19 +106,13 @@ body {
 }
 
 h1,
-h2 {
+h2,
+h3 {
   font-family: 'Rubik', sans-serif;
 }
 
 p {
   margin: 0;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-auto-rows: auto;
-  grid-gap: 16px;
 }
 
 @media screen and (min-width: 600px) {
@@ -106,6 +121,7 @@ p {
   }
 }
 </style>
+</head>
 
 <body>
 <header>
@@ -113,22 +129,19 @@ p {
   <h2>kontakt&shy;anfrage via online&shy;kalkulator</h2>
 </header>
 <main>
-  <div class="grid">
-    <p>Dienstleistung:</p>
-    <p>[--SERVICE--]</p>
-    <p class="area" hidden>Bereich</p>
-    <p class="area" hidden>[--AREA--]</p>
-    <p>Von:</p>
-    <div>
-      <p>[--FROM--]</p>
-      <p>[--ADDRESS--]</p>
-      <p>[--DOMICILE--]</p>
-      <br />
-      <p>[--PHONE--]</p>
-      <a href="mailto:[--MAIL--]">
-        <p>[--MAIL--]</p>
-      </a>
-    </div>
-  </div>
+  <h3>dienstleistung</h3>
+  <p>[--SERVICE--]</p>
+  <h3>von</h3>
+  <p>[--FROM--]</p>
+  <p>[--ADDRESS--]</p>
+  <p>[--DOMICILE--]</p>
+  <br />
+  <a href="tel:[--PHONE--]">
+    <p>[--PHONE--]</p>
+  </a>
+  <a href="mailto:[--MAIL--]">
+    <p>[--MAIL--]</p>
+  </a>
 </main>
-</body>`;
+</body>
+`;

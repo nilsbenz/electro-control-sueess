@@ -1,5 +1,5 @@
 import { default as dienstleistungen } from '../assets/json/dienstleistungen.json';
-import { Dienstleistung, Message } from './types';
+import { Dienstleistung, FileDto, Message } from './types';
 
 import * as firebase from 'firebase';
 
@@ -22,6 +22,18 @@ const adresseFormField = document.getElementById('address') as HTMLInputElement;
 const wohnortFormField = document.getElementById('place') as HTMLInputElement;
 const telefonFormField = document.getElementById('phone') as HTMLInputElement;
 const emailFormField = document.getElementById('email') as HTMLInputElement;
+const uploadFileFormField = document.getElementById(
+  'file-upload'
+) as HTMLInputElement;
+const uploadFileDropArea = document.getElementById(
+  'file-upload-drop-area'
+) as HTMLLabelElement;
+const uploadFileLabel = document.getElementById(
+  'file-upload-label'
+) as HTMLInputElement;
+const uploadFileDelete = document.getElementById(
+  'file-upload-delete'
+) as HTMLButtonElement;
 const preisliste = document.getElementById('preisliste') as HTMLDivElement;
 const sendMailSuccess = document.getElementById('send-mail-success');
 const sendMailError = document.getElementById('send-mail-error');
@@ -94,6 +106,80 @@ bereicheFormfield.addEventListener('change', (e: Event): void => {
   }
 });
 
+const updateFileUploadLabel = () => {
+  const files = uploadFileFormField.files;
+  if (files.length) {
+    uploadFileLabel.innerHTML = files[0].name;
+    uploadFileLabel.classList.add('file-upload-label--valid');
+    uploadFileDelete.classList.remove('icon--hidden');
+  } else {
+    uploadFileLabel.innerHTML = 'Datei hochladen';
+    uploadFileLabel.classList.remove('file-upload-label--valid');
+    uploadFileDelete.classList.add('icon--hidden');
+  }
+};
+
+uploadFileFormField.addEventListener('change', updateFileUploadLabel);
+
+const div = document.createElement('div');
+
+const supportsDragNDrop =
+  ('draggable' in div || ('ondragstart' in div && 'ondrop' in div)) &&
+  'FormData' in window &&
+  'FileReader' in window;
+
+if (supportsDragNDrop) {
+  uploadFileDropArea.ondragover = (e: DragEvent): void => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  uploadFileDropArea.ondragenter = (e: DragEvent): void => {
+    e.preventDefault();
+    e.stopPropagation();
+    uploadFileDropArea.classList.add('drag-area--drag');
+  };
+
+  uploadFileDropArea.ondragleave = uploadFileDropArea.ondragend = (
+    e: DragEvent
+  ): void => {
+    e.preventDefault();
+    e.stopPropagation();
+    uploadFileDropArea.classList.remove('drag-area--drag');
+  };
+
+  uploadFileDropArea.addEventListener('drop', (e: DragEvent): void => {
+    e.preventDefault();
+    e.stopPropagation();
+    uploadFileDropArea.classList.remove('drag-area--drag');
+    uploadFileFormField.files = e.dataTransfer.files;
+    updateFileUploadLabel();
+  });
+}
+
+const deleteUploadedFile = () => {
+  uploadFileFormField.value = '';
+  uploadFileLabel.innerHTML = 'Datei hochladen';
+  uploadFileLabel.classList.remove('file-upload-label--valid');
+  uploadFileDelete.classList.add('icon--hidden');
+};
+
+uploadFileDelete.addEventListener('click', deleteUploadedFile);
+
+const readFile = async (file: File): Promise<FileDto> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      resolve({
+        name: file.name,
+        data: reader.result as string,
+      });
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+};
+
 form.addEventListener(
   'submit',
   async (e: Event): Promise<void> => {
@@ -111,6 +197,8 @@ form.addEventListener(
     const domicile = wohnortFormField.value;
     const phone = telefonFormField.value;
     const mail = emailFormField.value;
+    const files = uploadFileFormField.files;
+    const file = files.length ? await readFile(files[0]) : undefined;
 
     const message: Message = {
       service,
@@ -123,6 +211,7 @@ form.addEventListener(
       domicile,
       phone,
       mail,
+      file,
     };
 
     const res = await fetch('/sendmail', {
@@ -146,6 +235,7 @@ form.addEventListener(
       wohnortFormField.value = '';
       telefonFormField.value = '';
       emailFormField.value = '';
+      deleteUploadedFile();
       sendMailSuccess.classList.remove('success-message--hidden');
       setTimeout(() => {
         sendMailSuccess.classList.add('success-message--hidden');

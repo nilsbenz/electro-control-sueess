@@ -2,8 +2,9 @@
 
 .formfield {
   position: relative;
+  display: flex;
 
-  input,
+  input:not([type='file']),
   select {
     box-sizing: border-box;
     width: 100%;
@@ -34,7 +35,13 @@
     }
   }
 
-  input {
+  input:not([type='file']),
+  select,
+  input[type='file'] + label {
+    transition: box-shadow $animation-speed-fast;
+  }
+
+  input:not([type='file']) {
     &:not(:focus):placeholder-shown + label {
       font-size: 1rem;
       line-height: 2.8rem;
@@ -49,6 +56,78 @@
     &:not(:focus):invalid + label {
       font-size: 1rem;
       line-height: 2.8rem;
+    }
+  }
+
+  input[type='file'] {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+
+    + label.drag-area {
+      font-size: 1rem;
+      padding: calc(#{1.5 * $spacing-x-small} + 0.4rem) $spacing-small;
+      background-color: $color-card-bg;
+      border: 1px solid transparent;
+      border-radius: $border-radius;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+
+      * {
+        pointer-events: none;
+      }
+
+      .file-upload-label {
+        color: $color-text-secondary;
+
+        &--valid {
+          color: $color-text-primary;
+        }
+      }
+
+      + img.icon {
+        transition: opacity $animation-speed-fast;
+        height: 1.4rem;
+        filter: invert(1);
+        opacity: 0.6;
+        justify-self: flex-end;
+        align-self: center;
+        cursor: pointer;
+        padding: $spacing-x-small;
+        margin-left: $spacing-x-small;
+
+        &:hover {
+          opacity: 0.9;
+        }
+
+        &--delete {
+          transition: transform $animation-speed-fast;
+          &:hover {
+            transform: scale(1.4);
+          }
+        }
+
+        &--hidden {
+          display: none;
+        }
+      }
+
+      &--drag {
+        border: 1px solid $color-error;
+      }
+    }
+
+    &:focus + label {
+      box-shadow: 0 0 0 2px $color-error;
+
+      img.icon {
+        opacity: 0.9;
+      }
     }
   }
 
@@ -76,6 +155,14 @@
   &--hidden {
     display: none;
   }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s,
+      color 5000s ease-in-out 0s;
+  }
 }
 
 // Faster transition in Safari due to fractional font-size issue
@@ -88,13 +175,6 @@
       transition-duration: 0.1s;
     }
   }
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
 }
 
 form {
@@ -143,10 +223,14 @@ form {
     }
   }
 
-  .form-actions {
-    display: flex;
-    flex-direction: column;
+  button[type='submit'] {
+    justify-self: flex-end;
+    align-self: flex-end;
+    height: fit-content;
+    width: fit-content;
+  }
 
+  .feedback {
     p.success-message,
     p.error-message {
       margin: $spacing-small 0 0;
@@ -168,12 +252,6 @@ form {
         color: $color-text-primary;
       }
     }
-
-    button[type='submit'] {
-      align-self: flex-end;
-      height: fit-content;
-      width: fit-content;
-    }
   }
 
   @media screen and (min-width: 600px) {
@@ -188,10 +266,8 @@ form {
       grid-column: span 2;
     }
 
-    .form-actions {
+    .feedback {
       grid-column: span 2;
-      flex-direction: row-reverse;
-      justify-content: space-between;
 
       p.success-message,
       p.error-message {
