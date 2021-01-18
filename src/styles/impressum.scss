@@ -1,0 +1,16 @@
+@import './common.scss';
+
+main {
+  h3 {
+    margin: 1.6rem 0 1rem;
+  }
+
+  a {
+    color: $color-text-secondary;
+    transition: color $animation-speed-fast;
+
+    &:hover {
+      color: $color-text-primary;
+    }
+  }
+}
