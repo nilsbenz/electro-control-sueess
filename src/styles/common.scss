@@ -105,14 +105,40 @@ h3 {
   font-size: 1.33rem;
 }
 
+h4 {
+  font-size: 1.2rem;
+}
+
 p {
   margin: 0;
   line-height: 130%;
 }
 
+div.subtitle {
+  padding: $spacing-x-small 0 $spacing-x-small $spacing-small;
+  border-radius: $border-radius;
+  border-left: $spacing-x-small solid $color-text-primary;
+
+  p {
+    font-size: 1.1rem;
+    max-width: 750px;
+  }
+}
+
 a {
   color: inherit;
   text-decoration: inherit;
+}
+
+ul {
+  margin: 0;
+  list-style-type: '>';
+  padding-left: 1rem;
+  line-height: 150%;
+
+  li {
+    padding-left: 1rem;
+  }
 }
 
 button,
@@ -186,6 +212,10 @@ button {
   h3 {
     font-size: 4vw;
   }
+
+  h4 {
+    font-size: 3.6vw;
+  }
 }
 
 @media screen and (min-width: 600px) {
@@ -202,6 +232,14 @@ button {
 
   h3 {
     font-size: 1.5rem;
+  }
+
+  h4 {
+    font-size: 1.35rem;
+  }
+
+  div.subtitle {
+    border-left-width: $spacing-small;
   }
 }
 
