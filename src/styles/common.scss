@@ -16,6 +16,13 @@ $color-error: #f25e5e;
 
 $shadow-big: 0 15px 24px rgba(0, 0, 0, 0.23), 0 19px 76px rgba(0, 0, 0, 0.3);
 
+*:focus {
+  border-radius: $border-radius;
+  outline: none;
+  box-shadow: 0 0 0 2px $color-error;
+  transition: box-shadow $animation-speed-fast;
+}
+
 html,
 body {
   box-sizing: border-box;
@@ -44,6 +51,31 @@ footer {
 
 header {
   margin: 5vh 0;
+
+  div,
+  a {
+    cursor: pointer;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    border-radius: $border-radius;
+    opacity: 0.6;
+    transition: opacity $animation-speed-fast;
+
+    img.back {
+      height: 1rem;
+      filter: invert(1);
+    }
+
+    h1 {
+      margin-left: 0.5rem;
+    }
+
+    &:hover,
+    &:focus {
+      opacity: 0.9;
+    }
+  }
 }
 
 main {
@@ -117,7 +149,7 @@ p {
 div.subtitle {
   padding: $spacing-x-small 0 $spacing-x-small $spacing-small;
   border-radius: $border-radius;
-  border-left: $spacing-x-small solid $color-text-primary;
+  border-left: $spacing-x-small solid $color-text-secondary;
 
   p {
     font-size: 1.1rem;
@@ -178,12 +210,6 @@ button {
   border-radius: $border-radius;
   font-size: 1rem;
   cursor: pointer;
-  transition: box-shadow $animation-speed-slow;
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px $color-error;
-  }
 
   &:hover {
     box-shadow: $shadow-big;
@@ -201,6 +227,17 @@ button {
 }
 
 @media screen and (min-width: 533px) {
+  header div,
+  header a {
+    img.back {
+      height: 3vw;
+    }
+
+    h1 {
+      margin-left: 1.5vw;
+    }
+  }
+
   h1 {
     font-size: 3vw;
   }
@@ -244,6 +281,17 @@ button {
 }
 
 @media screen and (min-width: 1333px) {
+  header div,
+  header a {
+    img.back {
+      height: 2.5rem;
+    }
+
+    h1 {
+      margin-left: 1.25rem;
+    }
+  }
+
   h1 {
     font-size: 2.5rem;
   }

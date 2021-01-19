@@ -35,12 +35,6 @@
     }
   }
 
-  input:not([type='file']),
-  select,
-  input[type='file'] + label {
-    transition: box-shadow $animation-speed-fast;
-  }
-
   input:not([type='file']) {
     &:not(:focus):placeholder-shown + label {
       font-size: 1rem;

@@ -8,4 +8,14 @@ main {
   h4 {
     margin: 1.2rem 0 0.8rem;
   }
+
+  li a {
+    color: $color-text-secondary;
+    transition: color $animation-speed-fast;
+
+    &:hover,
+    &:focus {
+      color: $color-text-primary;
+    }
+  }
 }
