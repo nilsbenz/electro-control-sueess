@@ -224,22 +224,26 @@ form.addEventListener(
 
     formSubmitButton.disabled = false;
 
-    const responseBody = await res.json();
+    if (res.status === 200) {
+      const responseBody = await res.json();
 
-    if (responseBody.success) {
-      firmaFormField.value = '';
-      anredeFormField.value = '';
-      vornameFormField.value = '';
-      nachnameFormField.value = '';
-      adresseFormField.value = '';
-      wohnortFormField.value = '';
-      telefonFormField.value = '';
-      emailFormField.value = '';
-      deleteUploadedFile();
-      sendMailSuccess.classList.remove('success-message--hidden');
-      setTimeout(() => {
-        sendMailSuccess.classList.add('success-message--hidden');
-      }, 5000);
+      if (responseBody.success) {
+        firmaFormField.value = '';
+        anredeFormField.value = '';
+        vornameFormField.value = '';
+        nachnameFormField.value = '';
+        adresseFormField.value = '';
+        wohnortFormField.value = '';
+        telefonFormField.value = '';
+        emailFormField.value = '';
+        deleteUploadedFile();
+        sendMailSuccess.classList.remove('success-message--hidden');
+        setTimeout(() => {
+          sendMailSuccess.classList.add('success-message--hidden');
+        }, 5000);
+      } else {
+        sendMailError.classList.remove('error-message--hidden');
+      }
     } else {
       sendMailError.classList.remove('error-message--hidden');
     }

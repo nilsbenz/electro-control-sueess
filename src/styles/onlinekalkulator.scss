@@ -78,6 +78,7 @@
 
       .file-upload-label {
         color: $color-text-secondary;
+        word-break: break-all;
 
         &--valid {
           color: $color-text-primary;
