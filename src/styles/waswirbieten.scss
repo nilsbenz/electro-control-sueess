@@ -18,4 +18,14 @@ main {
       color: $color-text-primary;
     }
   }
+
+  p {
+    &.margin-top-lg {
+      margin-top: 3.6rem;
+    }
+
+    &.margin-top-md {
+      margin-top: 1.2rem;
+    }
+  }
 }
