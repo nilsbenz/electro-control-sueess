@@ -3,6 +3,12 @@ import * as functions from 'firebase-functions';
 import * as Mail from 'nodemailer/lib/mailer';
 import * as nodemailer from 'nodemailer';
 
+interface PricelistItem {
+  name: string;
+  amount: number;
+  price: number;
+}
+
 interface FileDto {
   name: string;
   data: string;
@@ -11,6 +17,7 @@ interface FileDto {
 interface Message {
   service: string;
   area: string | undefined;
+  pricelist: PricelistItem[];
   company: string | undefined;
   form: string;
   firstname: string;
@@ -28,6 +35,9 @@ export const sendMail = functions.https.onRequest(async (request, response) => {
   response.send(res);
 });
 
+const calculateTotal = (total: number, current: PricelistItem) =>
+  total + current.amount * current.price;
+
 const sendEmail = async (message: Message): Promise<any> => {
   try {
     const mailFrom: string = functions.config().mail.from;
@@ -41,6 +51,34 @@ const sendEmail = async (message: Message): Promise<any> => {
         message.area
           ? `${message.service}</p><h3>bereich</h3><p>${message.area}`
           : message.service
+      )
+      .replace(
+        '[--PRICELIST--]',
+        message.pricelist.length === 0
+          ? ''
+          : `
+          <h3>preisliste</h3>
+          <table>
+            <tr>
+              <th>Dienstleistung</th>
+              <th>Menge</th>
+              <th>Preis</th>
+            </tr>
+            ${message.pricelist.map(
+              (price) => `
+                <tr>
+                  <td>${price.name}</td>
+                  <td>${price.amount}</td>
+                  <td>CHF ${(price.amount * price.price).toFixed(2)}</td>
+                </tr>`
+            )}
+            <tr>
+              <th colspan="2">Total</th>
+              <th>CHF ${message.pricelist
+                .reduce(calculateTotal, 0)
+                .toFixed(2)}</th>
+            </tr>
+          </table>`
       )
       .replace(
         '[--FROM--]',
@@ -115,6 +153,16 @@ p {
   margin: 0;
 }
 
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 5px;
+  text-align: left;    
+}
+
 @media screen and (min-width: 600px) {
   body {
     padding: 16px calc(50vw - 292px);
@@ -131,6 +179,7 @@ p {
 <main>
   <h3>dienstleistung</h3>
   <p>[--SERVICE--]</p>
+  [--PRICELIST--]
   <h3>von</h3>
   <p>[--FROM--]</p>
   <p>[--ADDRESS--]</p>

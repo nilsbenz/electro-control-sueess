@@ -10,11 +10,11 @@
             "preise": [
               {
                 "name": "Inspektor für akkreditierte Bereiche",
-                "preis": "CHF 138.00"
+                "preis": 138.0
               },
               {
                 "name": "Inspektor für unabhängige Bereiche und Blitzschutz",
-                "preis": "CHF 123.00"
+                "preis": 123.0
               }
             ]
           }
@@ -33,7 +33,7 @@
             "preise": [
               {
                 "name": "Inspektor für akkreditierte Bereiche",
-                "preis": "CHF 138.00"
+                "preis": 138.0
               }
             ]
           }
@@ -47,7 +47,7 @@
             "preise": [
               {
                 "name": "Inspektor für unabhängige Bereiche und Blitzschutz",
-                "preis": "CHF 123.00"
+                "preis": 123.0
               }
             ]
           }

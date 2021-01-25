@@ -1,6 +1,6 @@
 export interface Preis {
   name: string;
-  preis: string;
+  preis: number;
 }
 
 export interface PreislistenItem {
@@ -18,6 +18,12 @@ export interface Dienstleistung {
   bereiche: Bereich[];
 }
 
+export interface PricelistItem {
+  name: string;
+  amount: number;
+  price: number;
+}
+
 export interface FileDto {
   name: string;
   data: string;
@@ -26,6 +32,7 @@ export interface FileDto {
 export interface Message {
   service: string;
   area: string | undefined;
+  pricelist: PricelistItem[];
   company: string | undefined;
   form: string;
   firstname: string;
