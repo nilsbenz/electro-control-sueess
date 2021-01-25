@@ -160,6 +160,26 @@
   }
 }
 
+input[type='number'] {
+  box-sizing: border-box;
+  width: 3rem;
+  font-size: 1rem;
+  padding: $spacing-x-small;
+  background-color: $color-card-bg;
+  color: $color-text-primary;
+  border: 1px solid transparent;
+  border-radius: $border-radius;
+  text-align: end;
+
+  -moz-appearance: textfield;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
 // Faster transition in Safari due to fractional font-size issue
 @media not all and (min-resolution: 0.001dpcm) {
   @supports (-webkit-appearance: none) {
@@ -193,9 +213,20 @@ form {
     margin: $spacing-normal 0;
     max-width: 600px;
 
-    h4 {
-      font-size: 1.4rem;
+    .preisliste-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
       margin-bottom: $spacing-small;
+
+      p,
+      h4 {
+        margin: 0;
+      }
+
+      h4 {
+        font-size: 1.4rem;
+      }
     }
 
     h5 {
@@ -204,17 +235,35 @@ form {
     }
 
     .preisliste-item {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      grid-auto-rows: auto;
-      grid-auto-flow: column;
-      grid-gap: $spacing-small;
-      align-items: end;
+      display: flex;
+      flex-direction: column;
       margin-bottom: $spacing-x-small;
+      gap: $spacing-x-small;
 
       p {
         margin: 0;
+        flex-grow: 1;
       }
+
+      div {
+        align-self: flex-end;
+        display: flex;
+        align-items: center;
+        gap: $spacing-x-small;
+
+        p {
+          white-space: nowrap;
+        }
+      }
+
+      @media screen and (min-width: 450px) {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    .preisliste-total {
+      margin: $spacing-small 0 0;
     }
 
     &--hidden {

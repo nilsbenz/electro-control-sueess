@@ -1,7 +1,5 @@
 import { default as dienstleistungen } from '../assets/json/dienstleistungen.json';
-import { Dienstleistung, FileDto, Message } from './types';
-
-import * as firebase from 'firebase';
+import { Dienstleistung, FileDto, Message, PricelistItem } from './types';
 
 const form = document.getElementById('onlinekalkulator') as HTMLFormElement;
 const dienstleistungenFormfield = document.getElementById(
@@ -41,6 +39,8 @@ const formSubmitButton = document.getElementById(
   'form-submit-button'
 ) as HTMLButtonElement;
 
+let total: PricelistItem[] = [];
+
 dienstleistungen.forEach((dienstleistung) => {
   const option = document.createElement('option');
   option.value = dienstleistung.name;
@@ -70,6 +70,19 @@ dienstleistungenFormfield.addEventListener('change', (e: Event): void => {
   }
 });
 
+const calculateTotal = (total: number, current: PricelistItem) =>
+  total + current.amount * current.price;
+
+const updateTotal = (
+  element: HTMLParagraphElement,
+  updatedItem: PricelistItem
+): void => {
+  total = total.filter((item) => item.name !== updatedItem.name);
+  total.push(updatedItem);
+  const newTotal = total.reduce(calculateTotal, 0);
+  element.innerHTML = `Total: CHF ${newTotal.toFixed(2)}`;
+};
+
 bereicheFormfield.addEventListener('change', (e: Event): void => {
   const selectedDienstleistung: Dienstleistung =
     dienstleistungen[dienstleistungenFormfield.selectedIndex - 1];
@@ -80,9 +93,19 @@ bereicheFormfield.addEventListener('change', (e: Event): void => {
     )
     .bereiche.find((bereich) => bereich.name === selectedBereich);
   preisliste.innerHTML = '';
+  total = [];
+  const heading = document.createElement('div');
+  heading.classList.add('preisliste-heading');
   const title = document.createElement('h4');
   title.innerHTML = 'Preisliste';
-  preisliste.appendChild(title);
+  const number = document.createElement('p');
+  number.innerHTML = 'Anzahl';
+  heading.appendChild(title);
+  heading.appendChild(number);
+  preisliste.appendChild(heading);
+  const preislisteTotal = document.createElement('h5');
+  preislisteTotal.classList.add('preisliste-total');
+
   bereich.preisliste.forEach((preisListenItem) => {
     const subtitle = document.createElement('h5');
     subtitle.innerHTML = preisListenItem.titel;
@@ -90,15 +113,40 @@ bereicheFormfield.addEventListener('change', (e: Event): void => {
     preisListenItem.preise.forEach((preis) => {
       const item = document.createElement('div');
       const description = document.createElement('p');
+      const priceWrapper = document.createElement('div');
       const price = document.createElement('p');
+      const amount = document.createElement('input');
       description.innerHTML = preis.name;
-      price.innerHTML = preis.preis;
+      description.classList.add('preisliste-item-description');
+      price.innerHTML = `CHF ${preis.preis.toFixed(2)} * `;
+      amount.type = 'number';
+      amount.min = '0';
+      amount.max = '999';
+      amount.pattern = '[0-9]*';
+      amount.classList.add('preisliste-item-amount');
       item.classList.add('preisliste-item');
       item.appendChild(description);
-      item.appendChild(price);
+      priceWrapper.appendChild(price);
+      priceWrapper.appendChild(amount);
+      item.appendChild(priceWrapper);
       preisliste.appendChild(item);
+
+      amount.addEventListener('change', () => {
+        if (!Number(amount.value) || Number(amount.value) < 0) {
+          amount.value = '0';
+        }
+        amount.value = Math.floor(Number(amount.value)).toString();
+        updateTotal(preislisteTotal, {
+          name: preis.name,
+          amount: Number(amount.value),
+          price: preis.preis,
+        });
+      });
     });
   });
+
+  preisliste.appendChild(preislisteTotal);
+
   if (!bereich.preisliste.length) {
     preisliste.classList.add('preisliste--hidden');
   } else {
@@ -189,6 +237,7 @@ form.addEventListener(
     formSubmitButton.disabled = true;
     const service = dienstleistungenFormfield.value;
     const area = bereicheFormfield.value || undefined;
+    const pricelist = total.filter((item) => item.amount > 0);
     const company = firmaFormField.value || undefined;
     const anrede = anredeFormField.value;
     const firstname = vornameFormField.value;
@@ -203,6 +252,7 @@ form.addEventListener(
     const message: Message = {
       service,
       area,
+      pricelist,
       company,
       form: anrede,
       firstname,
