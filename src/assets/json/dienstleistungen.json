@@ -1,19 +1,73 @@
 [
   {
-    "name": "Blitzschutz (Kontrolle, Beratung und Konzepte)",
+    "name": "Periodische Elektrokontrolle / Sicherheitsnachweis",
     "bereiche": [
       {
-        "name": "Blitzschutzkontrolle",
+        "name": "Wohnungsbau Einfamilienhaus",
         "preisliste": [
           {
-            "titel": "Stundensätze",
+            "titel": "Varianten",
             "preise": [
               {
-                "name": "Inspektor für akkreditierte Bereiche",
+                "name": "Variante 1",
                 "preis": 138.0
               },
               {
-                "name": "Inspektor für unabhängige Bereiche und Blitzschutz",
+                "name": "Variante 2",
+                "preis": 123.0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Wohnungsbau Mehrfamilienhaus",
+        "preisliste": [
+          {
+            "titel": "Varianten",
+            "preise": [
+              {
+                "name": "Variante 1",
+                "preis": 138.0
+              },
+              {
+                "name": "Variante 2",
+                "preis": 123.0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Kleingewerbe und Photovoltaikanlagen",
+        "preisliste": [
+          {
+            "titel": "Varianten",
+            "preise": [
+              {
+                "name": "Variante 1",
+                "preis": 138.0
+              },
+              {
+                "name": "Variante 2",
+                "preis": 123.0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Landwirtschaft",
+        "preisliste": [
+          {
+            "titel": "Varianten",
+            "preise": [
+              {
+                "name": "Variante 1",
+                "preis": 138.0
+              },
+              {
+                "name": "Variante 2",
                 "preis": 123.0
               }
             ]
@@ -23,30 +77,115 @@
     ]
   },
   {
-    "name": "Akkreditierte Kontrolle",
+    "name": "Abnahmekontrollen",
     "bereiche": [
       {
-        "name": "Militäranlagen",
+        "name": "Nach Umbau / Erweiterungen",
         "preisliste": [
           {
-            "titel": "Stundensätze",
+            "titel": "Varianten",
             "preise": [
               {
-                "name": "Inspektor für akkreditierte Bereiche",
+                "name": "Variante 1",
                 "preis": 138.0
+              },
+              {
+                "name": "Variante 2",
+                "preis": 123.0
               }
             ]
           }
         ]
       },
       {
-        "name": "Bahnen",
+        "name": "Bei Neubauten",
         "preisliste": [
           {
-            "titel": "Stundensätze",
+            "titel": "Varianten",
             "preise": [
               {
-                "name": "Inspektor für unabhängige Bereiche und Blitzschutz",
+                "name": "Variante 1",
+                "preis": 138.0
+              },
+              {
+                "name": "Variante 2",
+                "preis": 123.0
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Abnahmekontrolle und Beglaubigung von PV-Anlagen",
+    "bereiche": [
+      {
+        "name": "Abnahmekontrolle und Beglaubigung von PV-Anlagen <30kVA (nur in Region Gossau möglich)",
+        "preisliste": [
+          {
+            "titel": "Varianten",
+            "preise": [
+              {
+                "name": "Variante 1",
+                "preis": 138.0
+              },
+              {
+                "name": "Variante 2",
+                "preis": 123.0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Abnahmekontrolle PV-Anlage <30kVA",
+        "preisliste": [
+          {
+            "titel": "Varianten",
+            "preise": [
+              {
+                "name": "Variante 1",
+                "preis": 138.0
+              },
+              {
+                "name": "Variante 2",
+                "preis": 123.0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Abnahmekontrolle mehrerer PV-Anlagen <30kVA",
+        "preisliste": [
+          {
+            "titel": "Varianten",
+            "preise": [
+              {
+                "name": "Variante 1",
+                "preis": 138.0
+              },
+              {
+                "name": "Variante 2",
+                "preis": 123.0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Beglaubigung PV-Anlage <30kVA (nur in Region Gossau möglich)",
+        "preisliste": [
+          {
+            "titel": "Varianten",
+            "preise": [
+              {
+                "name": "Variante 1",
+                "preis": 138.0
+              },
+              {
+                "name": "Variante 2",
                 "preis": 123.0
               }
             ]
@@ -57,6 +196,25 @@
   },
   {
     "name": "Überprüfung Netzqualität",
-    "bereiche": []
+    "bereiche": [
+      {
+        "name": "Überprüfung und Analyse",
+        "preisliste": [
+          {
+            "titel": "Varianten",
+            "preise": [
+              {
+                "name": "Variante 1",
+                "preis": 138.0
+              },
+              {
+                "name": "Variante 2",
+                "preis": 123.0
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 ]

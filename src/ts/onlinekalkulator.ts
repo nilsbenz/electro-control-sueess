@@ -33,6 +33,7 @@ const uploadFileDelete = document.getElementById(
   'file-upload-delete'
 ) as HTMLButtonElement;
 const preisliste = document.getElementById('preisliste') as HTMLDivElement;
+const warningPvAnlage = document.getElementById('warning-pv-anlage');
 const sendMailSuccess = document.getElementById('send-mail-success');
 const sendMailError = document.getElementById('send-mail-error');
 const formSubmitButton = document.getElementById(
@@ -67,6 +68,14 @@ dienstleistungenFormfield.addEventListener('change', (e: Event): void => {
     bereicheFormfield.parentElement.classList.remove('formfield--hidden');
   } else {
     bereicheFormfield.parentElement.classList.add('formfield--hidden');
+  }
+  if (
+    selectedDienstleistung ===
+    'Abnahmekontrolle und Beglaubigung von PV-Anlagen'
+  ) {
+    warningPvAnlage.classList.remove('warning--hidden');
+  } else {
+    warningPvAnlage.classList.add('warning--hidden');
   }
 });
 

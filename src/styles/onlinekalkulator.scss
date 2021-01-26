@@ -271,6 +271,16 @@ form {
     }
   }
 
+  .warning {
+    strong {
+      color: $color-error;
+    }
+
+    &--hidden {
+      display: none;
+    }
+  }
+
   button[type='submit'] {
     justify-self: flex-end;
     align-self: flex-end;
