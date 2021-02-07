@@ -3,14 +3,9 @@ export interface Preis {
   preis: number;
 }
 
-export interface PreislistenItem {
-  titel: string;
-  preise: Preis[];
-}
-
 export interface Bereich {
   name: string;
-  preisliste: PreislistenItem[];
+  preisliste: Preis[];
 }
 
 export interface Dienstleistung {

@@ -155,6 +155,11 @@ div.subtitle {
   p {
     font-size: 1.1rem;
     max-width: 750px;
+    text-align: justify;
+
+    &:not(:first-child) {
+      margin-top: $spacing-x-small;
+    }
   }
 }
 

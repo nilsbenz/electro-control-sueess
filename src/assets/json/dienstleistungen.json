@@ -6,17 +6,12 @@
         "name": "Wohnungsbau Einfamilienhaus",
         "preisliste": [
           {
-            "titel": "Varianten",
-            "preise": [
-              {
-                "name": "Variante 1",
-                "preis": 138.0
-              },
-              {
-                "name": "Variante 2",
-                "preis": 123.0
-              }
-            ]
+            "name": "Wohnhaus bis 6 Zimmer",
+            "preis": 300.0
+          },
+          {
+            "name": "Wohnhaus mehr als 6 Zimmer oder erhöhte Technik",
+            "preis": 400.0
           }
         ]
       },
@@ -24,17 +19,20 @@
         "name": "Wohnungsbau Mehrfamilienhaus",
         "preisliste": [
           {
-            "titel": "Varianten",
-            "preise": [
-              {
-                "name": "Variante 1",
-                "preis": 138.0
-              },
-              {
-                "name": "Variante 2",
-                "preis": 123.0
-              }
-            ]
+            "name": "Allgemeinteil",
+            "preis": 150.0
+          },
+          {
+            "name": "Pro Wohnung",
+            "preis": 90.0
+          },
+          {
+            "name": "Tiefgarage (pro 30 Plätze)",
+            "preis": 100.0
+          },
+          {
+            "name": "STWEG (sep. Rechnung und Kontrollbericht)",
+            "preis": 120.0
           }
         ]
       },
@@ -42,17 +40,24 @@
         "name": "Kleingewerbe und Photovoltaikanlagen",
         "preisliste": [
           {
-            "titel": "Varianten",
-            "preise": [
-              {
-                "name": "Variante 1",
-                "preis": 138.0
-              },
-              {
-                "name": "Variante 2",
-                "preis": 123.0
-              }
-            ]
+            "name": "Kleinstgewerbe",
+            "preis": 150.0
+          },
+          {
+            "name": "Kleingewerbe bis 200m2",
+            "preis": 250.0
+          },
+          {
+            "name": "Kleingewerbe über 200m2",
+            "preis": 350.0
+          },
+          {
+            "name": "Photovoltaikanlage (Einzelauftrag)",
+            "preis": 250.0
+          },
+          {
+            "name": "Photovoltaikanlage gleichzeitig mit Grundgebäude",
+            "preis": 150.0
           }
         ]
       },
@@ -60,17 +65,24 @@
         "name": "Landwirtschaft",
         "preisliste": [
           {
-            "titel": "Varianten",
-            "preise": [
-              {
-                "name": "Variante 1",
-                "preis": 138.0
-              },
-              {
-                "name": "Variante 2",
-                "preis": 123.0
-              }
-            ]
+            "name": "Kontrolle Wohnhaus",
+            "preis": 200.0
+          },
+          {
+            "name": "Kontrolle Scheune bis 200m2",
+            "preis": 150.0
+          },
+          {
+            "name": "Kontrolle Scheune mittelgross",
+            "preis": 200.0
+          },
+          {
+            "name": "Kontrolle Scheune erhöhte Technik",
+            "preis": 300.0
+          },
+          {
+            "name": "Nebengebäude",
+            "preis": 50.0
           }
         ]
       }
@@ -83,17 +95,8 @@
         "name": "Nach Umbau / Erweiterungen",
         "preisliste": [
           {
-            "titel": "Varianten",
-            "preise": [
-              {
-                "name": "Variante 1",
-                "preis": 138.0
-              },
-              {
-                "name": "Variante 2",
-                "preis": 123.0
-              }
-            ]
+            "name": "Stundenansatz Inspektor für unabhängige Bereiche",
+            "preis": 115.0
           }
         ]
       },
@@ -101,17 +104,8 @@
         "name": "Bei Neubauten",
         "preisliste": [
           {
-            "titel": "Varianten",
-            "preise": [
-              {
-                "name": "Variante 1",
-                "preis": 138.0
-              },
-              {
-                "name": "Variante 2",
-                "preis": 123.0
-              }
-            ]
+            "name": "Stundenansatz Inspektor für unabhängige Bereiche",
+            "preis": 115.0
           }
         ]
       }
@@ -124,17 +118,8 @@
         "name": "Abnahmekontrolle und Beglaubigung von PV-Anlagen <30kVA (nur in Region Gossau möglich)",
         "preisliste": [
           {
-            "titel": "Varianten",
-            "preise": [
-              {
-                "name": "Variante 1",
-                "preis": 138.0
-              },
-              {
-                "name": "Variante 2",
-                "preis": 123.0
-              }
-            ]
+            "name": "In einem Arbeitsgang",
+            "preis": 300.0
           }
         ]
       },
@@ -142,17 +127,12 @@
         "name": "Abnahmekontrolle PV-Anlage <30kVA",
         "preisliste": [
           {
-            "titel": "Varianten",
-            "preise": [
-              {
-                "name": "Variante 1",
-                "preis": 138.0
-              },
-              {
-                "name": "Variante 2",
-                "preis": 123.0
-              }
-            ]
+            "name": "Nur AC-Seite",
+            "preis": 150.0
+          },
+          {
+            "name": "AC + DC Seite wenn von Elektrointallateur erstellt",
+            "preis": 250.0
           }
         ]
       },
@@ -160,17 +140,12 @@
         "name": "Abnahmekontrolle mehrerer PV-Anlagen <30kVA",
         "preisliste": [
           {
-            "titel": "Varianten",
-            "preise": [
-              {
-                "name": "Variante 1",
-                "preis": 138.0
-              },
-              {
-                "name": "Variante 2",
-                "preis": 123.0
-              }
-            ]
+            "name": "Nur AC-Seite",
+            "preis": 120.0
+          },
+          {
+            "name": "AC + DC Seite wenn von Elektrointallateur erstellt",
+            "preis": 220.0
           }
         ]
       },
@@ -178,17 +153,8 @@
         "name": "Beglaubigung PV-Anlage <30kVA (nur in Region Gossau möglich)",
         "preisliste": [
           {
-            "titel": "Varianten",
-            "preise": [
-              {
-                "name": "Variante 1",
-                "preis": 138.0
-              },
-              {
-                "name": "Variante 2",
-                "preis": 123.0
-              }
-            ]
+            "name": "Pro Anlage",
+            "preis": 100.0
           }
         ]
       }
@@ -201,17 +167,8 @@
         "name": "Überprüfung und Analyse",
         "preisliste": [
           {
-            "titel": "Varianten",
-            "preise": [
-              {
-                "name": "Variante 1",
-                "preis": 138.0
-              },
-              {
-                "name": "Variante 2",
-                "preis": 123.0
-              }
-            ]
+            "name": "Stundenansatz",
+            "preis": 115.0
           }
         ]
       }

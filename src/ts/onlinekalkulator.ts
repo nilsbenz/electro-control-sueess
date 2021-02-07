@@ -115,41 +115,36 @@ bereicheFormfield.addEventListener('change', (e: Event): void => {
   const preislisteTotal = document.createElement('h5');
   preislisteTotal.classList.add('preisliste-total');
 
-  bereich.preisliste.forEach((preisListenItem) => {
-    const subtitle = document.createElement('h5');
-    subtitle.innerHTML = preisListenItem.titel;
-    preisliste.appendChild(subtitle);
-    preisListenItem.preise.forEach((preis) => {
-      const item = document.createElement('div');
-      const description = document.createElement('p');
-      const priceWrapper = document.createElement('div');
-      const price = document.createElement('p');
-      const amount = document.createElement('input');
-      description.innerHTML = preis.name;
-      description.classList.add('preisliste-item-description');
-      price.innerHTML = `CHF ${preis.preis.toFixed(2)} * `;
-      amount.type = 'number';
-      amount.min = '0';
-      amount.max = '999';
-      amount.pattern = '[0-9]*';
-      amount.classList.add('preisliste-item-amount');
-      item.classList.add('preisliste-item');
-      item.appendChild(description);
-      priceWrapper.appendChild(price);
-      priceWrapper.appendChild(amount);
-      item.appendChild(priceWrapper);
-      preisliste.appendChild(item);
+  bereich.preisliste.forEach((preis) => {
+    const item = document.createElement('div');
+    const description = document.createElement('p');
+    const priceWrapper = document.createElement('div');
+    const price = document.createElement('p');
+    const amount = document.createElement('input');
+    description.innerHTML = preis.name;
+    description.classList.add('preisliste-item-description');
+    price.innerHTML = `CHF ${preis.preis.toFixed(2)} * `;
+    amount.type = 'number';
+    amount.min = '0';
+    amount.max = '999';
+    amount.pattern = '[0-9]*';
+    amount.classList.add('preisliste-item-amount');
+    item.classList.add('preisliste-item');
+    item.appendChild(description);
+    priceWrapper.appendChild(price);
+    priceWrapper.appendChild(amount);
+    item.appendChild(priceWrapper);
+    preisliste.appendChild(item);
 
-      amount.addEventListener('change', () => {
-        if (!Number(amount.value) || Number(amount.value) < 0) {
-          amount.value = '0';
-        }
-        amount.value = Math.floor(Number(amount.value)).toString();
-        updateTotal(preislisteTotal, {
-          name: preis.name,
-          amount: Number(amount.value),
-          price: preis.preis,
-        });
+    amount.addEventListener('change', () => {
+      if (!Number(amount.value) || Number(amount.value) < 0) {
+        amount.value = '0';
+      }
+      amount.value = Math.floor(Number(amount.value)).toString();
+      updateTotal(preislisteTotal, {
+        name: preis.name,
+        amount: Number(amount.value),
+        price: preis.preis,
       });
     });
   });

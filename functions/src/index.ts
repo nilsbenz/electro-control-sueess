@@ -102,7 +102,7 @@ const sendEmail = async (message: Message): Promise<any> => {
 
     let mailOptions: Mail.Options = {
       from: mailFrom,
-      to: message.mail || mailTo, // TODO: ändern!
+      to: mailTo,
       subject: `Kontaktanfrage von ${message.firstname} ${message.lastname}`,
       html,
     };
