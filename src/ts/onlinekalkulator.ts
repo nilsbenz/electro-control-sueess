@@ -114,6 +114,9 @@ bereicheFormfield.addEventListener('change', (e: Event): void => {
   preisliste.appendChild(heading);
   const preislisteTotal = document.createElement('h5');
   preislisteTotal.classList.add('preisliste-total');
+  const withoutMwst = document.createElement('p');
+  withoutMwst.innerHTML = '* Preise exkl. MwSt.';
+  withoutMwst.classList.add('preisliste-without-mwst');
 
   bereich.preisliste.forEach((preis) => {
     const item = document.createElement('div');
@@ -149,6 +152,7 @@ bereicheFormfield.addEventListener('change', (e: Event): void => {
     });
   });
 
+  preisliste.appendChild(withoutMwst);
   preisliste.appendChild(preislisteTotal);
 
   if (!bereich.preisliste.length) {
